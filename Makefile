@@ -1,9 +1,9 @@
 CXXFLAGS = -std=c++11
 OBJS = testAliceBob
 
-testAliceBob: testAliceBob.cpp modArith.o
+testAliceBob: testAliceBob.cpp ModArith.o
 
-modArith.o: modArith.cpp modArith.h
+ModArith.o: ModArith.cpp ModArith.h
 
 clean:
-	/bin/rm -f *.o *.~ ${OBJS}
+	/bin/rm -f *.o *~ ${OBJS}
