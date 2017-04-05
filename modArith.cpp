@@ -1,6 +1,26 @@
 #include "modArith.h"
 
 namespace cry{
+  unsigned long modArith::cra(vector<int> r, vector<int> n){
+    int k  = r.size();
+    if(n.size() != k){
+      std::cerr << "Error: Need same number of remainders and moduli\n";
+      exit(1);
+    }
+    int m = 1;
+    for(int i = 0; i < k; ++i){
+      m *= n[i];
+    }
+    int mi;
+    int ci;
+    int x = 0;
+    for(int i = 0; i < k; ++i){
+      mi = m / n[i];
+      ci = modInv(mi, n[i]);
+      x += r[i] * ci * mi;
+    }
+    return x % m;
+  }
   unsigned long modArith::modInv(int a, int n){
     if(a == 0){
       std::cerr << "Error: No modular inverse exists\n";

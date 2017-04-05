@@ -1,3 +1,4 @@
+CXXFLAGS = -std=c++11
 OBJS = testAliceBob
 
 testAliceBob: testAliceBob.cpp modArith.o
