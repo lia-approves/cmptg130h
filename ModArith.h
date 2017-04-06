@@ -1,13 +1,15 @@
 #include <bitset>
+#include <climits>
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
+#include <memory>
 #include <vector>
 
-using std::vector;
+using std::unique_ptr; using std::vector;
 
 namespace CRY{
-typedef long long val;
+typedef unsigned long long val;
 class ModArith{
  public:
   static vector<val> ZStarGroupElements(val n);
@@ -19,4 +21,3 @@ class ModArith{
   static val gcd(val a, val b);
 };
 }
-

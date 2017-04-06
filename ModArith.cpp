@@ -1,6 +1,9 @@
 #include "ModArith.h"
 
 namespace CRY{
+  /*vector<val> ZStarGroupElements(val n){
+    //
+    }*/
   val ModArith::cra(vector<val> r, vector<val> n){
     val k  = r.size();
     if(n.size() != k){
@@ -34,16 +37,18 @@ namespace CRY{
     return modExp(a, e, n);
   }
   val ModArith::modExp(val a, val e, val n){
+    //modify maximum e2MaxSize if val is modified
+    const val e2MaxSize = static_cast<val>(log2(ULLONG_MAX) + 1);
     val e2Size = static_cast<val>(log2(e)) + 1;
-    if(e2Size >= 256){
-      std::cerr << "Error: n too large\n";
+    if(e2Size >= e2MaxSize){
+      std::cerr << "Error: e too large\n";
       exit(1);
     }
-    std::bitset<256> e2(e);
+    unique_ptr<std::bitset<e2MaxSize>> e2 (new std::bitset<e2MaxSize>(e));
     val b = a;
-    for(val i = e2Size - 2; i >= 0; --i){
+    for(val i = e2Size - 1; i > 0; --i){
       b = b * b % n;
-      if(e2[i])
+      if((*e2)[i-1])
 	b = b * a % n;
     }
     return b;
