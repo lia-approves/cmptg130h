@@ -1,9 +1,45 @@
 #include "ModArith.h"
 
 namespace CRY{
-  /*vector<val> ZStarGroupElements(val n){
-    //
-    }*/
+  void ModArith::fastPrimes(val nMax){
+    for(val i = 0; i <= nMax; ++i){
+      for(val j = 0; j <= i; ++j){
+	val q = (1 << i) + (1 << j) + 1;
+        if(isPrime(q))
+	  std::cout << q << "\n";
+      }
+    }
+  }
+  void ModArith::ZStarGroupElements(val n){
+    vector<val> ret;
+    if(isPrime(n)){
+      for(val i = 0; i < n; ++i){
+	ret.push_back(i);
+	std::cout << i << ", ";
+      }
+    }else{
+      for(val i = 0; i < n; ++i){
+	if(gcd(i, n) == 1){
+	  ret.push_back(i);
+	  std::cout << i << ", ";
+	}
+      }
+    }
+    //return ret;
+    std::cout << "\n";
+  }
+  template <typename T>
+  ostream& operator<<(ostream& os, const vector<T>& v){
+    os << "{";
+    for(int i = 0; i < v.size() - 1; ++i){
+      os << v[i] << ", ";
+    }
+    if(v.size() != 0){
+      os << v[v.size() - 1];
+    }
+    os << "}";
+    return os;
+  }
   val ModArith::cra(vector<val> r, vector<val> n){
     val k  = r.size();
     if(n.size() != k){
@@ -54,7 +90,12 @@ namespace CRY{
     return b;
   }
   bool ModArith::isPrime(val n){
-    return totient(n) == n - 1;
+    val sqrtn = sqrt(n);
+    for(val i = 2; i <= sqrtn; ++i){
+      if(gcd(i, n) != 1)
+	return false;
+    }
+    return true;
   }
   val ModArith::totient(val n){
     val tot = 1;

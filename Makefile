@@ -1,4 +1,5 @@
-CXXFLAGS = -std=c++11 -Wall
+CC = g++
+CXXFLAGS = -std=c++11 -Wall -O2
 OBJS = testAliceBob
 
 testAliceBob: testAliceBob.cpp ModArith.o
