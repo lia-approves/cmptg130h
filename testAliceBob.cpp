@@ -21,7 +21,9 @@ int main(){
   r = {1, 2, 3, 4};
   n = {11, 13, 15, 17};
   cout << "cra(1, 2, 3, 4; 11, 13, 15, 17) = " << ModArith::cra(r, n) << endl;
-  //cout << "Z*5, * mod 5 = " << ModArith::ZStarGroupElements(5) << endl;
-  ModArith::ZStarGroupElements(5);
-  ModArith::fastPrimes(30);
+  
+  cout << "Z*5, * mod 5 = " << ModArith::ZStarGroupElements(5) << endl;
+  
+  cout << "Fast primes of the form 2^i + 2^j + 1, where i and j < 30 : " << ModArith::fastPrimes(30) << endl;
+
 }

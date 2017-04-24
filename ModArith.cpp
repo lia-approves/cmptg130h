@@ -1,45 +1,36 @@
 #include "ModArith.h"
 
 namespace CRY{
-  void ModArith::fastPrimes(val nMax){
+
+  vector<val> ModArith::fastPrimes(val nMax){
+    vector<val> ret;
     for(val i = 0; i <= nMax; ++i){
       for(val j = 0; j <= i; ++j){
 	val q = (1 << i) + (1 << j) + 1;
-        if(isPrime(q))
-	  std::cout << q << "\n";
+        if(isPrime(q)){
+	  ret.push_back(q);
+	}
       }
     }
+    return ret;
   }
-  void ModArith::ZStarGroupElements(val n){
+
+  vector<val> ModArith::ZStarGroupElements(val n){
     vector<val> ret;
     if(isPrime(n)){
       for(val i = 0; i < n; ++i){
 	ret.push_back(i);
-	std::cout << i << ", ";
       }
     }else{
       for(val i = 0; i < n; ++i){
 	if(gcd(i, n) == 1){
 	  ret.push_back(i);
-	  std::cout << i << ", ";
 	}
       }
     }
-    //return ret;
-    std::cout << "\n";
+    return ret;
   }
-  template <typename T>
-  ostream& operator<<(ostream& os, const vector<T>& v){
-    os << "{";
-    for(int i = 0; i < v.size() - 1; ++i){
-      os << v[i] << ", ";
-    }
-    if(v.size() != 0){
-      os << v[v.size() - 1];
-    }
-    os << "}";
-    return os;
-  }
+
   val ModArith::cra(vector<val> r, vector<val> n){
     val k  = r.size();
     if(n.size() != k){
@@ -60,6 +51,7 @@ namespace CRY{
     }
     return x % m;
   }
+
   val ModArith::modInv(val a, val n){
     if(a == 0){
       std::cerr << "Error: No modular inverse exists\n";
@@ -69,9 +61,14 @@ namespace CRY{
       return 0;
     if(a == 1)
       return 1;
+    if(gcd(a, n) != 1){
+      std::cerr << "Error: No modular inverse exists\n";
+      exit(1);
+    }
     val e = totient(n) - 1;
     return modExp(a, e, n);
   }
+
   val ModArith::modExp(val a, val e, val n){
     //modify maximum e2MaxSize if val is modified
     const val e2MaxSize = static_cast<val>(log2(ULLONG_MAX) + 1);
@@ -89,6 +86,7 @@ namespace CRY{
     }
     return b;
   }
+
   bool ModArith::isPrime(val n){
     val sqrtn = sqrt(n);
     for(val i = 2; i <= sqrtn; ++i){
@@ -97,6 +95,7 @@ namespace CRY{
     }
     return true;
   }
+
   val ModArith::totient(val n){
     val tot = 1;
     for(val i = 2; i < n; ++i){
@@ -105,6 +104,7 @@ namespace CRY{
     }
     return tot;
   }
+
   val ModArith::gcd(val a, val b){
     if(a == 0)
       return b;
@@ -121,4 +121,5 @@ namespace CRY{
     else
       return gcd((b - a)/2, a);
   }
+  
 }
