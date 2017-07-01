@@ -1,7 +1,18 @@
 #include "ModArith.h"
-
 namespace CRY{
 
+  val discriminant(val a, val b, val c, val d){
+    return pow(b, 2)*pow(c, 2) - 4*a*pow(c, 3) - 4*pow(b, 3)*d - 27*pow(a, 2)*pow(d, 2) + 18*a*b*c*d;
+  }
+  
+  val discriminantWeierstrass(val a, val b){
+    return 4*pow(a, 3) + 27*pow(b, 2);
+  }
+  
+  val ECCRNG(){
+    return 0;
+  }
+  
   vector<val> ModArith::fastPrimes(val nMax){
     vector<val> ret;
     for(val i = 0; i <= nMax; ++i){
