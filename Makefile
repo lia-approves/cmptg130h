@@ -1,8 +1,12 @@
 CC = g++
 CXXFLAGS = -std=c++11 -Wall -O2
-OBJS = testAliceBob
+OBJS = TestAliceBob TestABE
 
-testAliceBob: testAliceBob.cpp ModArith.o
+TestABE: TestABE.cpp ModArith.o DiffieHellman.o
+
+TestAliceBob: TestAliceBob.cpp
+
+DiffieHellman.o: DiffieHellman.cpp DiffieHellman.h ModArith.o
 
 ModArith.o: ModArith.cpp ModArith.h
 
