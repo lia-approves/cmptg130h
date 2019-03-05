@@ -48,6 +48,11 @@ class ModArith{
   //Returns the greatest common denominator of a and b
   static val gcd(val a, val b);
 
+  //Returns 2 nontrivial factors (if any) given a via Miller's subroutine for finding nontrivial factors of N
+  static vector<val> millersFactoring(val a, val N);
+
+  //Returns the multiplicative order of a mod N
+  static val multOrder(val a, val N);
 };
   template <typename T>
   ostream& operator<<(ostream& os, const vector<T>& v){

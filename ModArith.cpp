@@ -132,5 +132,36 @@ namespace CRY{
     else
       return gcd((b - a)/2, a);
   }
-  
+
+  vector<val> ModArith::millersFactoring(val a, val N){
+    vector<val> ret;
+    val g = gcd(a, N);
+    std::cout << "a = " << a << "\t";
+    if(g > 1){
+      ret.push_back(g);
+      ret.push_back(N/g);
+      std::cout << g << "\t" << N/g;
+    }else{
+      val s = multOrder(a, N);
+      if(s % 2 == 0 && modExp(a, s/2, N) != (val)(N-1)){
+        val b = gcd(modExp(a, s/2, N) - 1, N);
+        val c = gcd(modExp(a, s/2, N) + 1, N);
+        std::cout << b << "\t" << c;
+        ret.push_back(b);
+        ret.push_back(c);
+      }
+    }
+    std::cout << std::endl;
+    return ret;
+  }
+
+  val ModArith::multOrder(val a, val N){
+    if(a == 0 || a == 1 || N == 0)
+      return 1;
+    val s = 1;
+    while(modExp(a, s, N) != (val)1){
+      s++;
+    }
+    return s;
+  }
 }

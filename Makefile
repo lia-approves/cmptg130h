@@ -4,7 +4,7 @@ OBJS = TestAliceBob TestABE
 
 TestABE: TestABE.cpp ModArith.o DiffieHellman.o
 
-TestAliceBob: TestAliceBob.cpp
+TestAliceBob: TestAliceBob.cpp ModArith.o
 
 DiffieHellman.o: DiffieHellman.cpp DiffieHellman.h ModArith.o
 
